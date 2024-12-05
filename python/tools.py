@@ -7,11 +7,11 @@ import re
 import ssl
 import io
 import gzip
-import random
 import socket
 import time
 import area
 import os
+import secrets
 
 socket.setdefaulttimeout(5.0)
 
@@ -85,7 +85,7 @@ class Tools (object) :
         fakeIpList = []
 
         for x in range(0, 4):
-            fakeIpList.append(str(int(random.uniform(0, 255))))
+            fakeIpList.append(str(int(secrets.SystemRandom().uniform(0, 255))))
 
         fakeIp = '.'.join(fakeIpList)
 
