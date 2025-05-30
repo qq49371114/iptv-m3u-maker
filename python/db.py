@@ -70,9 +70,9 @@ class DataBase (object) :
             keyList.append(k)
             valList.append(str(v).replace('"','\"').replace("'","''"))
 
-        sql = "insert into " + self.table + " (`" + '`, `'.join(keyList) + "`) values ('" + "', '".join(valList) + "')"
+        sql = "insert into " + self.table + " (`" + '`, `'.join(keyList) + "`) values (?" + ")"
         try:
-            self.cur.execute(sql)
+            self.cur.execute(sql, ("', '".join(valList), ))
             self.conn.commit()
         except:
             if reTry > 0 :
@@ -89,7 +89,7 @@ class DataBase (object) :
 
         param = param[1:]
 
-        sql = "update " + self.table + " set %s WHERE id = %s" % (param, id)
+        sql = "update " + self.table + " set  WHERE id = %s" % id
         try:
             self.cur.execute(sql)
             self.conn.commit()
